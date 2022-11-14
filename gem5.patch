@@ -1,0 +1,32 @@
+diff --git a/src/sim/init_signals.cc b/src/sim/init_signals.cc
+index 501f4eb9d1..d06d5fc166 100644
+--- a/src/sim/init_signals.cc
++++ b/src/sim/init_signals.cc
+@@ -66,18 +66,25 @@
+ using namespace std;
+
+ // Use an separate stack for fatal signal handlers
+-static uint8_t fatalSigStack[2 * SIGSTKSZ];
++static uint8_t* fatalSigStack = nullptr; // [2 * SIGSTKSZ];
++#define FATALSIGSTACK_SIZE (sizeof(uint8_t) * 2 * SIGSTKSZ)
++
++static void freeFatalSigStack() {
++    free(fatalSigStack);
++}
+
+ static bool
+ setupAltStack()
+ {
++    fatalSigStack = static_cast<uint8_t*>(malloc(FATALSIGSTACK_SIZE));
++    atexit(freeFatalSigStack);
+     stack_t stack;
+ #if defined(__FreeBSD__) && (__FreeBSD_version < 1100097)
+     stack.ss_sp = (char *)fatalSigStack;
+ #else
+     stack.ss_sp = fatalSigStack;
+ #endif
+-    stack.ss_size = sizeof(fatalSigStack);
++    stack.ss_size = FATALSIGSTACK_SIZE;
+     stack.ss_flags = 0;
+
+     return sigaltstack(&stack, NULL) == 0;

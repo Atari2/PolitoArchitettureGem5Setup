@@ -31,7 +31,7 @@ sudo python2.7 -m pip install setuptools six scons
 ```bash
 sudo apt install m4 zlib1g zlib1g-dev libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev
 ```
-- Apply the following patch to the gem5 repository
+- Apply the following patch to the gem5 repository (you can also find the file [here](gem5.patch))
 ```diff
 diff --git a/src/sim/init_signals.cc b/src/sim/init_signals.cc
 index 501f4eb9d1..d06d5fc166 100644
