@@ -66,9 +66,9 @@ index 501f4eb9d1..d06d5fc166 100644
 
      return sigaltstack(&stack, NULL) == 0;
 ```
-- Build gem5
+- Build gem5 (change the gcc/g++ paths accordingly to where you installed them)
 ```bash
-CC=</path/to/built/gcc-7.3.0> CXX=</path/to/built/g++-7.3.0> python2.7 `which scons`-j$(nproc) build/ALPHA/gem5.opt
+CC=/path/to/built/gcc-7.3.0 CXX=/path/to/built/g++-7.3.0 python2.7 `which scons`-j$(nproc) build/ALPHA/gem5.opt
 ```
 - You will now have a working gem5.opt in `build/ALPHA/gem5.opt`, install it wherever you want.
 - To build c programs with the ALPHA toolchain you'll need to download the `alphaev67-unknown-linux-gnu.tar.bz2` from this repository.

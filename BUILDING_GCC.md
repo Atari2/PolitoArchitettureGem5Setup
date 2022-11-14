@@ -34,11 +34,11 @@ index 31a5e697eae..8cef72d021f 100644
  /* On aarch64 glibc 2.20 and earlier provided incorrect mode field.  */
 -CHECK_SIZE_AND_OFFSET(ipc_perm, mode);
 ```
-- Configure gcc
+- Configure gcc, remember to set the prefix paths to where you want your gcc/g++ binaries to be installed so you can use them later, while building gem5.
 ```
 mkdir build
 cd build
-../configure --disable-multilib --enable-languages=c,c++ --prefix=</path/to/install/gcc-7.3.0>
+../configure --disable-multilib --enable-languages=c,c++ --prefix=/path/to/install
 ```
 ```
 - Build and install gcc
