@@ -40,7 +40,6 @@ mkdir build
 cd build
 ../configure --disable-multilib --enable-languages=c,c++ --prefix=/path/to/install
 ```
-```
 - Build and install gcc
 ```
 make -j$(nproc)
