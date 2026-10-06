@@ -28,4 +28,3 @@ index 31a5e697eae..8cef72d021f 100644
  #endif
  
  CHECK_TYPE_SIZE(shmid_ds);
- 
